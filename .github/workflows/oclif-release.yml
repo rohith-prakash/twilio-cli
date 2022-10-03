@@ -54,6 +54,24 @@ jobs:
           git config user.email github-actions@github.com
           git commit -am "Uploaded packages"
           git push
+  home-brew-release:
+    name: Trigger homebrew release workflow
+    runs-on: ubuntu-latest
+    needs: [oclif-release]
+    steps:
+      - name: Checkout cli repo
+        uses: actions/checkout@v2
+      - name: Invoke HomeBrew workflow
+        run: source .github/scripts/trigger-and-wait.sh
+        env:
+          INPUT_OWNER: ${{ github.repository_owner }}
+          INPUT_REPO: homebrew-brew
+          INPUT_GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          INPUT_WORKFLOW_FILE_NAME: release.yml
+          INPUT_REF: ${{ github.event.inputs.home-brew-branch }}
+          INPUT_WAITING_INTERVAL: 10
+          INPUT_INPUTS: '{ "formula": "${{github.event.inputs.formula}}", "version": "${{github.event.inputs.tag-name}}", "sha": "${{needs.oclif-release.outputs.sha256}}", "pre-release": "${{github.event.inputs.pre-release}}" }'
+          INPUT_PROPAGATE_FAILURE: true
 #          FILE=./projectA/file
 #          if [ -f "$FILE" ]; then
 #            echo "Copying $FILE"
