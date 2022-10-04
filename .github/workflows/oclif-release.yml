@@ -14,7 +14,7 @@ on:
       pre-release:
         description: 'Homebrew release type'
         default: 'false'
-​
+        
 jobs:
   oclif-release:
     name: Publish for ${{ matrix.os }}
