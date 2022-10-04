@@ -54,6 +54,18 @@ jobs:
           git config user.email github-actions@github.com
           git commit -am "Uploaded packages"
           git push
+      - name: Modify Sha
+        if: ${{matrix.publish == 'homebrew'}}
+        run: |
+          brew install coreutils
+            if [ "${{github.event.inputs.formula}}" == "twiliorc" ]; then
+              echo "::set-output name=sha256::$(sha256sum dist/channels/rc/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
+            elif [ "${{github.event.inputs.formula}}" == "twiliodraft" ]; then
+              echo "::set-output name=sha256::$(sha256sum dist/channels/draft/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
+            else
+              echo "::set-output name=sha256::$(sha256sum dist/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
+            fi
+          
   home-brew-release:
     name: Trigger homebrew release workflow
     runs-on: ubuntu-latest
