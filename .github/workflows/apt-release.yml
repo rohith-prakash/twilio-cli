@@ -10,13 +10,20 @@ jobs:
     - name: Check Out Repo
       uses: actions/checkout@v2
       
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
+    # - name: Configure AWS credentials
+    #   uses: aws-actions/configure-aws-credentials@v1
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+    #     aws-region: us-east-1
+    
+    - name: Add Package Access Token
+      uses: actions/checkout@master
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
-        aws-region: us-east-1
+        repository: rohith-prakash/test
+        token: ${{ secrets.ACCESS_TOKEN }}
+        path: ./test
 
     - name: generate linux tarball
       run: |
