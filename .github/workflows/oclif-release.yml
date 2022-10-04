@@ -66,7 +66,7 @@ jobs:
         env:
           INPUT_OWNER: ${{ github.repository_owner }}
           INPUT_REPO: homebrew-brew
-          INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          INPUT_GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
           INPUT_WORKFLOW_FILE_NAME: release.yml
           INPUT_REF: ${{ github.event.inputs.home-brew-branch }}
           INPUT_WAITING_INTERVAL: 10
@@ -88,7 +88,7 @@ jobs:
         env:
           INPUT_OWNER: ${{ github.repository_owner }}
           INPUT_REPO: scoop-twilio-cli
-          INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          INPUT_GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
           INPUT_WORKFLOW_FILE_NAME: update-release.yml
           INPUT_WAITING_INTERVAL: 10
           INPUT_INPUTS: '{ "version": "${{github.event.inputs.tag-name}}" }'
