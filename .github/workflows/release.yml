@@ -45,7 +45,7 @@ jobs:
     needs: [update-api-definitions-changelog]
     outputs:
       tag-name: '5.0.2' # ${{ steps.semantic-release.outputs.TAG_NAME }}
-      draft-tag-name: ${{ steps.semantic-release-draft.outputs.TAG_NAME }}
+      draft-tag-name: '5.0.2' #${{ steps.semantic-release-draft.outputs.TAG_NAME }}
     steps:
       - name: Checkout cli
         uses: actions/checkout@v2
@@ -92,7 +92,7 @@ jobs:
         id: extract_branch
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       - name: Invoke Oclif workflow
-        if: ${{needs.release.outputs.tag-name != '' && steps.extract_branch.outputs.branch == 'main'}}
+        if: ${{needs.release.outputs.tag-name != '' }} #&& steps.extract_branch.outputs.branch == 'main'
         run: node .github/scripts/trigger-workflow.js
         env:
           WORKFLOW_NAME: 'oclif-release.yml'
@@ -156,7 +156,7 @@ jobs:
         id: extract_branch
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       - name: Invoke platform executable workflow
-        if: ${{needs.release.outputs.tag-name != '' && steps.extract_branch.outputs.branch == 'main'}}
+        if: ${{needs.release.outputs.tag-name != ''}} # && steps.extract_branch.outputs.branch == 'main'
         run: node .github/scripts/trigger-workflow.js
         env:
           WORKFLOW_NAME: ${{ matrix.executable_workflow }}
