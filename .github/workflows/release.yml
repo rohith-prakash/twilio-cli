@@ -55,12 +55,12 @@ jobs:
         run: |
           git pull
           make install
-      - name: Semantic Release runs
-        id: semantic-release
-        run: DEBUG=semantic-release:* $(npm bin)/semantic-release  -t \${version}
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      # - name: Semantic Release runs
+      #   id: semantic-release
+      #   run: DEBUG=semantic-release:* $(npm bin)/semantic-release  -t \${version}
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       # - name: verify release required
       #   if: ${{steps.semantic-release.outputs.TAG_NAME == ''}}
       #   uses: actions/github-script@v3
