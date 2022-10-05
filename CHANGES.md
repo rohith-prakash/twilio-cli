@@ -1,3 +1,11 @@
+### [1.0.2](https://github.com/rohith-prakash/twilio-cli/compare/1.0.1...1.0.2) (2022-10-05)
+
+
+### Library - Fixes
+
+* minor changes ([82e7612](https://github.com/rohith-prakash/twilio-cli/commit/82e7612503b5a44cf2b1b2a61c32146ccb73b53f))
+* minor changes ([d2d77a8](https://github.com/rohith-prakash/twilio-cli/commit/d2d77a8426931a3dcf9f90f6a8afbc79176cf75f))
+
 ### [1.0.1](https://github.com/rohith-prakash/twilio-cli/compare/1.0.0...1.0.1) (2022-10-05)
 
 
