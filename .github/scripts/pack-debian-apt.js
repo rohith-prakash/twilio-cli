@@ -9,6 +9,21 @@ function debArch(arch) {
   throw new Error(`invalid arch: ${arch}`);
 }
 
+const git_commit_script = {
+  get : (version) => `git config --global user.email "rohithprakashklm@gmail.com"
+git config --global user.name "rohith-prakash"
+branch=$(git branch --show-current)
+git add apt/
+if [ -n "$(git status --porcelain)" ]; then
+  echo "There are changes to commit.";
+  git commit -m "Release ${version}"
+  git push origin "$branch"
+else
+  echo "No changes to commit";
+fi`
+
+}
+
 const scripts = {
   bin: () => `#!/usr/bin/env bash
 set -e
@@ -118,7 +133,8 @@ PATH=$PATH:$PWD/bin eval $(PATH=$PATH:$PWD/bin node -p "require('./package').scr
     //   await qq.x(`gpg --digest-algo SHA512 --clearsign -u ${gpgKey} --batch --pinentry-mode loopback --passphrase ${passphrase} -o InRelease Release`, {cwd: dist});
     //   await qq.x(`gpg --digest-algo SHA512 -abs -u ${gpgKey} --batch --pinentry-mode loopback --passphrase ${passphrase} -o Release.gpg Release`, {cwd: dist});
     // }
-    await qq.x(`aws s3 cp ${dist} s3://${pjson.oclif.update.s3.bucket}/apt --recursive --acl public-read`);
+    //await qq.x(`aws s3 cp ${dist} s3://${pjson.oclif.update.s3.bucket}/apt --recursive --acl public-read`);
+    await qq.x(git_commit_script.get(debVersion));
   }
   // importing secret key
   const importGPG  = async() => {
