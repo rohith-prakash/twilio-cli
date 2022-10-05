@@ -1,3 +1,10 @@
+### [1.0.3](https://github.com/rohith-prakash/twilio-cli/compare/1.0.2...1.0.3) (2022-10-05)
+
+
+### Library - Fixes
+
+* set version ([bc5d6ee](https://github.com/rohith-prakash/twilio-cli/commit/bc5d6ee742f0dd3a616341bfb1d84bec874c2d05))
+
 ### [1.0.2](https://github.com/rohith-prakash/twilio-cli/compare/1.0.1...1.0.2) (2022-10-05)
 
 
