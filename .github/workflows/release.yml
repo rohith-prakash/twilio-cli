@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [update-api-definitions-changelog]
     outputs:
-      tag-name: 5.0.2 # ${{ steps.semantic-release.outputs.TAG_NAME }}
+      tag-name: '5.0.2' # ${{ steps.semantic-release.outputs.TAG_NAME }}
       draft-tag-name: ${{ steps.semantic-release-draft.outputs.TAG_NAME }}
     steps:
       - name: Checkout cli
