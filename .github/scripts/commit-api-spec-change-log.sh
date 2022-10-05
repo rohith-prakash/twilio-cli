@@ -5,8 +5,8 @@ versionType="$2"
 echo "$changeLog"
 node .github/scripts/update-change-log.js "$changeLog"
 echo "Git configurations"
-git config --global user.email "team_interfaces+github@twilio.com"
-git config --global user.name "twilio-dx"
+git config --global user.email "rohithprakashklm@gmail.com"
+git config --global user.name "rohith-prakash"
 git add -A
 if [ -n "$(git status --porcelain)" ]; then
   branch=$(git branch --show-current)
