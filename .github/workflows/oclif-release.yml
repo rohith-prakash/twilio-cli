@@ -60,6 +60,8 @@ jobs:
             echo "::set-output name=sha256::$(sha256sum dist/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
           fi
           cp -R ./dist/. ./test
+          cp ./distt/twilio-*-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
+          cp ./distt/twilio-*-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
           cd ./test
           git add .
           git config user.name github-actions
