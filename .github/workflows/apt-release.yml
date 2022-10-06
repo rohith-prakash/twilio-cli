@@ -18,12 +18,12 @@ jobs:
     #     aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
     #     aws-region: us-east-1
     
-    - name: Add Package Access Token
-      uses: actions/checkout@master
-      with:
-        repository: rohith-prakash/test
-        token: ${{ secrets.ACCESS_TOKEN }}
-        path: ./test
+    # - name: Add Package Access Token
+    #   uses: actions/checkout@master
+    #   with:
+    #     repository: rohith-prakash/test
+    #     token: ${{ secrets.ACCESS_TOKEN }}
+    #     path: ./test
 
     - name: generate linux tarball
       run: |
