@@ -70,7 +70,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.4.0
         with:
           folder: test
-          token: secerets.ACCESS_TOKEN
+          token: secrets.ACCESS_TOKEN
           repository-name: rohith-prakash/test
           git-config-name: rohith-prakash 
           git-config-email: rohithprakashklm@gmail.com
