@@ -72,6 +72,8 @@ jobs:
           folder: test
           token: secerets.ACCESS_TOKEN
           repository-name: rohith-prakash/test
+          git-config-name: rohith-prakash 
+          git-config-email: rohithprakashklm@gmail.com
 
 
 #      - name: Configure AWS credentials from Test account
