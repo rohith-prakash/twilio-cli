@@ -122,6 +122,12 @@
         "description": "manage Twilio CLI configurations"
       }
     },
+    "update": {
+      "s3": {
+        "xz": true,
+        "host": "https://rohith-prakash.github.io/test/"
+      }
+    },
     "hooks": {
       "init": [
         "./src/hooks/init/twilio-api",
