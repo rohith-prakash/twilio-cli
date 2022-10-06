@@ -90,13 +90,13 @@ jobs:
 #            echo "::set-output name=sha256::$(sha256sum dist/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
 #          fi
   publish-github-pages:
-      needs: [oclif-release]
-      name: Deploy Github Pages of Package Repo
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        folder: test
-        token: secerets.ACCESS_TOKEN
-        repository-name: rohith-prakash/test 
+    needs: [oclif-release]
+    name: Deploy Github Pages of Package Repo
+    uses: JamesIves/github-pages-deploy-action@v4
+    with:
+      folder: test
+      token: secerets.ACCESS_TOKEN
+      repository-name: rohith-prakash/test 
 
 
   home-brew-release:
