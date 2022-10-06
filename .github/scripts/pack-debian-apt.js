@@ -13,7 +13,7 @@ const git_commit_script = {
   get : (version) => `git config --global user.email "rohithprakashklm@gmail.com"
 git config --global user.name "rohith-prakash"
 branch=$(git branch --show-current)
-ls -r 
+ls -R dist
 git add apt
 if [ -n "$(git status --porcelain)" ]; then
   echo "There are changes to commit.";
