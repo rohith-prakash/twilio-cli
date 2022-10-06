@@ -38,6 +38,22 @@ jobs:
       #   GPG_SIGNING_KEY_PASSPHRASE: ${{ secrets.GPG_SIGNING_KEY_PASSPHRASE }}
       run: | 
         node .github/scripts/pack-debian-apt.js x64,arm
+    - name: Clone test repo
+      uses: actions/checkout@master
+      with:
+        repository: rohith-prakash/test
+        token: ${{ secrets.ACCESS_TOKEN }}
+        path: ./test
+
+    - name: Publish to packages
+      run: |
+        cp -R ./dist/. ./test/apt
+        cd ./test
+        git add .
+        git config user.name github-actions
+        git config user.email github-actions@github.com
+        git commit -am "Uploaded packages"
+        git push
 
   notify-complete-fail:
     if: ${{ failure() || cancelled() }}
