@@ -66,6 +66,13 @@ jobs:
           git config user.email github-actions@github.com
           git commit -am "Uploaded packages"
           git push
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          folder: test
+          token: secerets.ACCESS_TOKEN
+          repository-name: rohith-prakash/test
+
 
 #      - name: Configure AWS credentials from Test account
 #        uses: aws-actions/configure-aws-credentials@v1
@@ -89,20 +96,20 @@ jobs:
 #          else
 #            echo "::set-output name=sha256::$(sha256sum dist/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
 #          fi
-  publish-github-pages:
-    needs: [oclif-release]
-    name: Deploy Github Pages of Package Repo
-    uses: JamesIves/github-pages-deploy-action@v4
-    with:
-      folder: test
-      token: secerets.ACCESS_TOKEN
-      repository-name: rohith-prakash/test 
+  # publish-github-pages:
+  #   name: Deploy Github Pages of Package Repo
+  #   needs: [oclif-release]
+  #   uses: JamesIves/github-pages-deploy-action@v4
+  #   with:
+  #     folder: test
+  #     token: secerets.ACCESS_TOKEN
+  #     repository-name: rohith-prakash/test 
 
 
   home-brew-release:
     name: Trigger homebrew release workflow
     runs-on: ubuntu-latest
-    needs: [publish-github-pages]
+    needs: [ oclif-release ]
     steps:
       - name: Checkout cli repo
         uses: actions/checkout@v2
@@ -120,7 +127,7 @@ jobs:
   scoop-release:
     name: Trigger scoop release workflow
     runs-on: ubuntu-latest
-    needs: [ publish-github-pages ]
+    needs: [ oclif-release ]
     steps:
       - name: Checkout cli repo
         uses: actions/checkout@v2
