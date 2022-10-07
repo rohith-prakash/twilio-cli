@@ -16,64 +16,64 @@ on:
         default: 'false'
         
 jobs:
-  # oclif-release:
-  #   name: Publish for ${{ matrix.os }}
-  #   runs-on: ${{ matrix.os }}
-  #   outputs:
-  #     sha256: ${{ steps.sha256.outputs.sha256 }}
-  #   strategy:
-  #     fail-fast: false
-  #     matrix:
-  #       include:
-  #         - os: macos-latest
-  #           asset_name: twilio-v${{ github.event.inputs.tag-name }}
-  #           command_name: npx oclif-dev pack --xz
-  #           publish: homebrew
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - run: |
-  #         make install
-  #         npm list @twilio/cli-core
-  #         if [ "$RUNNER_OS" == "macOS" ]; then
-  #           brew install makensis
-  #         fi
-  #         ${{ matrix.command_name }}
-  #     - name: Clone test repo
-  #       run: |
-  #         rm -r test
-  #         git clone --filter=blob:none --no-checkout https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
-  #         cd ./test
-  #         git sparse-checkout init --cone
-  #         git read-tree -mu HEAD
-  #         cd ..
+  oclif-release:
+    name: Publish for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    outputs:
+      sha256: ${{ steps.sha256.outputs.sha256 }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            asset_name: twilio-v${{ github.event.inputs.tag-name }}
+            command_name: npx oclif-dev pack --xz
+            publish: homebrew
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          make install
+          npm list @twilio/cli-core
+          if [ "$RUNNER_OS" == "macOS" ]; then
+            brew install makensis
+          fi
+          ${{ matrix.command_name }}
+      - name: Clone test repo
+        run: |
+          rm -r test
+          git clone --filter=blob:none --no-checkout https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
+          cd ./test
+          git sparse-checkout init --cone
+          git read-tree -mu HEAD
+          cd ..
 
-  #     - name: Publish assets to test repo and calculate sha of oclif dev pack
-  #       id: sha256
-  #       if: ${{matrix.publish == 'homebrew'}}
-  #       run: |
-  #         make clean
-  #         make install
-  #         brew install coreutils
-  #         if [ "${{github.event.inputs.formula}}" == "twiliorc" ]; then
-  #           echo "::set-output name=sha256::$(sha256sum dist/channels/rc/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
-  #         elif [ "${{github.event.inputs.formula}}" == "twiliodraft" ]; then
-  #           echo "::set-output name=sha256::$(sha256sum dist/channels/draft/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
-  #         else
-  #           echo "::set-output name=sha256::$(sha256sum dist/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
-  #         fi
-  #         cp -R ./dist/. ./test
-  #         cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
-  #         cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
-  #         cd ./test
-  #         git add . --sparse
-  #         git config user.name github-actions
-  #         git config user.email github-actions@github.com
-  #         git commit -am "Uploaded packages"
-  #         git push https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
+      - name: Publish assets to test repo and calculate sha of oclif dev pack
+        id: sha256
+        if: ${{matrix.publish == 'homebrew'}}
+        run: |
+          make clean
+          make install
+          brew install coreutils
+          if [ "${{github.event.inputs.formula}}" == "twiliorc" ]; then
+            echo "::set-output name=sha256::$(sha256sum dist/channels/rc/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
+          elif [ "${{github.event.inputs.formula}}" == "twiliodraft" ]; then
+            echo "::set-output name=sha256::$(sha256sum dist/channels/draft/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
+          else
+            echo "::set-output name=sha256::$(sha256sum dist/${{ matrix.asset_name }}/${{ matrix.asset_name }}.tar.gz | awk '{print $1}')"
+          fi
+          cp -R ./dist/. ./test
+          cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
+          cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
+          cd ./test
+          git add . --sparse
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git commit -am "Uploaded packages"
+          git push https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
         
   publish-github-pages:
     name: Deploy Github Pages of Package Repo
-    # needs: [oclif-release]
+    needs: [oclif-release]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout cli repo
