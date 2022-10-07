@@ -39,11 +39,13 @@ jobs:
           fi
           ${{ matrix.command_name }}
       - name: Clone test repo
-        uses: actions/checkout@master
-        with:
-          repository: rohith-prakash/test
-          token: ${{ secrets.ACCESS_TOKEN }}
-          path: ./test
+        run: |
+          rm -r test
+          git clone --filter=blob:none --no-checkout https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
+          cd ./test
+          git sparse-checkout init --cone
+          git read-tree -mu HEAD
+          cd ..
 
       - name: Publish assets to test repo and calculate sha of oclif dev pack
         id: sha256
@@ -63,18 +65,18 @@ jobs:
           cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
           cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
           cd ./test
-          git add .
+          git add . --sparse
           git config user.name github-actions
           git config user.email github-actions@github.com
           git commit -am "Uploaded packages"
-          git push
+          git push https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
         
   publish-github-pages:
     name: Deploy Github Pages of Package Repo
     needs: [oclif-release]
     runs-on: ubuntu-latest
     steps:
-      - name: Invoke Scoop workflow
+      - name: Deploy Github Pages
         if: ${{steps.extract_branch.outputs.branch == 'main'}}
         run: source .github/scripts/trigger-and-wait.sh
         env:
