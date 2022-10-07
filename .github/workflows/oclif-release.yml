@@ -72,6 +72,7 @@ jobs:
   publish-github-pages:
     name: Deploy Github Pages of Package Repo
     needs: [oclif-release]
+    runs-on: ubuntu-latest
     steps:
       - name: Invoke Scoop workflow
         if: ${{steps.extract_branch.outputs.branch == 'main'}}
