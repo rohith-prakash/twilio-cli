@@ -76,6 +76,8 @@ jobs:
     needs: [oclif-release]
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout cli repo
+        uses: actions/checkout@v2
       - name: Deploy Github Pages
         if: ${{steps.extract_branch.outputs.branch == 'main'}}
         run: source .github/scripts/trigger-and-wait.sh
