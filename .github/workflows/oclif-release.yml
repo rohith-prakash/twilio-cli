@@ -65,8 +65,10 @@ jobs:
       - name: Push Changes to Package Repo
         run: |
           cp -R ./dist/. ./test
-          cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
-          cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
+          if [ "${{github.event.inputs.formula}}" != "twiliorc" ] && [ "${{github.event.inputs.formula}}" != "twiliodraft" ]; then
+            cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
+            cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
+          fi
           cd ./test
           git add . --sparse
           git config user.name github-actions
@@ -134,7 +136,7 @@ jobs:
           INPUT_PROPAGATE_FAILURE: true
   notify-complete-fail:
     if: ${{ failure() || cancelled() }}
-    needs: [ home-brew-release ]
+    needs: [ home-brew-release , publish-github-pages ]
     name: Notify Release Failed
     runs-on: ubuntu-latest
     steps:
