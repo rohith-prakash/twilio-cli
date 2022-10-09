@@ -1,3 +1,13 @@
+### [1.0.4](https://github.com/rohith-prakash/twilio-cli/compare/1.0.3...1.0.4) (2022-10-09)
+
+
+### Library - Fixes
+
+* added ubuntu latest ([aabb47d](https://github.com/rohith-prakash/twilio-cli/commit/aabb47d7fe992bb1ae50668f600eec7664686afd))
+* corrected workflow ([b76aceb](https://github.com/rohith-prakash/twilio-cli/commit/b76acebccf2dbb364958d5bb5596226913bb66ca))
+* minor changes ([d8af35f](https://github.com/rohith-prakash/twilio-cli/commit/d8af35fdef66565b5b96a35128cf9422271b26b2))
+* testing release ([b1801b5](https://github.com/rohith-prakash/twilio-cli/commit/b1801b5fcf1a6ffb4faac8fcf553ad2404f156ae))
+
 ### [1.0.3](https://github.com/rohith-prakash/twilio-cli/compare/1.0.2...1.0.3) (2022-10-05)
 
 
