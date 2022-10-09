@@ -54,26 +54,9 @@ jobs:
         git config user.email github-actions@github.com
         git commit -am "Uploaded packages"
         git push
-  publish-github-pages:
-    name: Deploy Github Pages of Package Repo
-    needs: [apt-build-release]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout cli repo
-        uses: actions/checkout@v2
-      - name: Deploy Github Pages
-        run: source .github/scripts/trigger-and-wait.sh
-        env:
-          INPUT_OWNER: rohith-prakash
-          INPUT_REPO: test
-          INPUT_GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          INPUT_WORKFLOW_FILE_NAME: build-and-deploy.yml
-          INPUT_WAITING_INTERVAL: 10
-          INPUT_PROPAGATE_FAILURE: true
-
   notify-complete-fail:
     if: ${{ failure() || cancelled() }}
-    needs: [ publish-github-pages ]
+    needs: [ apt-build-release ]
     name: Notify Release Failed
     runs-on: ubuntu-latest
     steps:
