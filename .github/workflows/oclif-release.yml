@@ -65,7 +65,13 @@ jobs:
       - name: Push Changes to Package Repo
         run: |
           cp -R ./dist/. ./test
-          if [ "${{github.event.inputs.formula}}" != "twiliorc" ] && [ "${{github.event.inputs.formula}}" != "twiliodraft" ]; then
+          if [ "${{github.event.inputs.formula}}" == "twiliorc" ]; then
+            cp ./dist/channels/rc/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/channels/rc/twilio-win32-x64.tar.xz
+            cp ./dist/channels/rc/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/channels/rc/twilio-win32-x86.tar.xz
+          elif [ "${{github.event.inputs.formula}}" == "twiliodraft" ]; then
+            cp ./dist/channels/draft/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/channels/draft/twilio-win32-x64.tar.xz
+            cp ./dist/channels/draft/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/channels/draft/twilio-win32-x86.tar.xz
+          else
             cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x64.tar.xz ./test/twilio-win32-x64.tar.xz
             cp ./dist/twilio-v${{ github.event.inputs.tag-name }}/twilio-v${{ github.event.inputs.tag-name }}-win32-x86.tar.xz ./test/twilio-win32-x86.tar.xz
           fi
