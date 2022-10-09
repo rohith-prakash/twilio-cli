@@ -142,7 +142,7 @@ jobs:
           INPUT_PROPAGATE_FAILURE: true
   notify-complete-fail:
     if: ${{ failure() || cancelled() }}
-    needs: [ home-brew-release , publish-github-pages ]
+    needs: [ home-brew-release , scoop-release ]
     name: Notify Release Failed
     runs-on: ubuntu-latest
     steps:
