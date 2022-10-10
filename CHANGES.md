@@ -1,3 +1,10 @@
+### [1.0.9-draft.2](https://github.com/rohith-prakash/twilio-cli/compare/1.0.9-draft.1...1.0.9-draft.2) (2022-10-10)
+
+
+### Library - Fixes
+
+* minor changes made ([10f28eb](https://github.com/rohith-prakash/twilio-cli/commit/10f28eba72b32aaeaaf082edb4d83ab62a66238f))
+
 ### [1.0.9-draft.1](https://github.com/rohith-prakash/twilio-cli/compare/1.0.8...1.0.9-draft.1) (2022-10-10)
 
 
