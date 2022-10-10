@@ -134,6 +134,7 @@ PATH=$PATH:$PWD/bin eval $(PATH=$PATH:$PWD/bin node -p "require('./package').scr
 
 (async () => {
   importGPG();
+  await qq.x(`@@@@@@@@@@@@@@@@@@@@Finished the importing`);
   const archStr = process.argv[2];
   const arches = archStr.split(",");
   await packDebian(arches);
