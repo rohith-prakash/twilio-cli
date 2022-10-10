@@ -131,7 +131,7 @@ PATH=$PATH:$PWD/bin eval $(PATH=$PATH:$PWD/bin node -p "require('./package').scr
     key = buff.toString("utf8");
     const keyPath = `key.pgp`;
     fs.writeFileSync(keyPath, key);
-    await qq.x(`gpg --import --batch --yes ${keyPath}`);
+    await qq.x(`gpg --import --batch --always-trust --yes ${keyPath}`);
   }
 
 (async () => {
