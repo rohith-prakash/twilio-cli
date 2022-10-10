@@ -79,9 +79,13 @@ jobs:
           git add . --sparse
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git commit -am "Uploaded packages"
-          git push https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
-        
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "There are changes to commit.";
+            git commit -am "Uploaded packages"
+            git push https://${{ secrets.ACCESS_TOKEN }}@github.com/rohith-prakash/test.git
+          else
+            echo "No changes to commit";
+          fi
   publish-github-pages:
     name: Deploy Github Pages of Package Repo
     needs: [oclif-release]

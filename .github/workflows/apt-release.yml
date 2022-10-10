@@ -47,13 +47,22 @@ jobs:
 
     - name: Publish to packages
       run: |
-        rsync -a ./dist/deb/ ./test/apt
+        if [ -d "dist/deb" ]; then
+          rsync -a ./dist/deb/ ./test/apt
+        elif [ -d "dist/channels"]; then
+          rsync -a ./dist/channels/ ./test/channels/apt
+        fi
         cd ./test
         git add .
         git config user.name github-actions
         git config user.email github-actions@github.com
-        git commit -am "Uploaded packages For Apt"
-        git push
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "There are changes to commit.";
+          git commit -am "Uploaded packages For Apt"
+          git push
+        else
+          echo "No changes to commit";
+        fi
   notify-complete-fail:
     if: ${{ failure() || cancelled() }}
     needs: [ apt-build-release ]
