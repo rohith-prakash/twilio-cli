@@ -1,3 +1,10 @@
+### [1.0.14](https://github.com/rohith-prakash/twilio-cli/compare/1.0.13...1.0.14) (2022-10-11)
+
+
+### Library - Fixes
+
+* corrected closing braces ([1e81222](https://github.com/rohith-prakash/twilio-cli/commit/1e812225dad6396259be615a215553127cc760ae))
+
 ### [1.0.13](https://github.com/rohith-prakash/twilio-cli/compare/1.0.12...1.0.13) (2022-10-11)
 
 
