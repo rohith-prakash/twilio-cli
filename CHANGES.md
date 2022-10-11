@@ -1,3 +1,10 @@
+### [1.0.12](https://github.com/rohith-prakash/twilio-cli/compare/1.0.11...1.0.12) (2022-10-11)
+
+
+### Library - Fixes
+
+* printing tag name ([f82ad10](https://github.com/rohith-prakash/twilio-cli/commit/f82ad100682ea38282df02e07a03f2764f660d52))
+
 ### [1.0.11](https://github.com/rohith-prakash/twilio-cli/compare/1.0.10...1.0.11) (2022-10-11)
 
 
