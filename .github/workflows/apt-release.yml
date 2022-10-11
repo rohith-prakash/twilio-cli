@@ -47,11 +47,14 @@ jobs:
 
     - name: Publish to packages
       run: |
+        ls -R
         if [ -d "dist/deb" ]; then
           rsync -a ./dist/deb/ ./test/apt
-        elif [ -d "dist/channels/draft"]; then
+        fi
+        if [ -d "dist/channels/draft"]; then
           rsync -a ./dist/channels/ ./test/channels/draft/apt
-        elif [ -d "dist/channels/rc"]; then
+        fi
+        if [ -d "dist/channels/rc"]; then
           rsync -a ./dist/channels/ ./test/channels/rc/apt
         fi
         cd ./test
