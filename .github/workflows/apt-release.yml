@@ -52,11 +52,11 @@ jobs:
           echo "Deb Folder being copied"
           rsync -a ./dist/deb/ ./test/apt
         fi
-        if [ -d "./dist/channels/draft"]; then
+        if [ -d "./dist/channels/draft" ]; then
           echo "Draft folder being copied"
           rsync -a ./dist/channels/draft/ ./test/channels/draft/apt
         fi
-        if [ -d "./dist/channels/rc"]; then
+        if [ -d "./dist/channels/rc" ]; then
           rsync -a ./dist/channels/rc/ ./test/channels/rc/apt
         fi
         cd ./test
