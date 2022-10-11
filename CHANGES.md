@@ -1,3 +1,12 @@
+### [1.0.15](https://github.com/rohith-prakash/twilio-cli/compare/1.0.14...1.0.15) (2022-10-11)
+
+
+### Library - Fixes
+
+* changed copying in oclif for scoop files ([a9a2cb2](https://github.com/rohith-prakash/twilio-cli/commit/a9a2cb22c4159bb62f950462ad99d086da1dbbcb))
+* indentation error in oclif release ([10fe389](https://github.com/rohith-prakash/twilio-cli/commit/10fe389e95fc97138b1fed0594b2856c80737815))
+* uncommented oclif release ([3ccba63](https://github.com/rohith-prakash/twilio-cli/commit/3ccba63b1ec6f070a51000fdf76db3e07ae1068a))
+
 ### [1.0.14](https://github.com/rohith-prakash/twilio-cli/compare/1.0.13...1.0.14) (2022-10-11)
 
 
