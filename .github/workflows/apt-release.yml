@@ -49,8 +49,10 @@ jobs:
       run: |
         if [ -d "dist/deb" ]; then
           rsync -a ./dist/deb/ ./test/apt
-        elif [ -d "dist/channels"]; then
-          rsync -a ./dist/channels/ ./test/channels/apt
+        elif [ -d "dist/channels/draft"]; then
+          rsync -a ./dist/channels/ ./test/channels/draft/apt
+        elif [ -d "dist/channels/rc"]; then
+          rsync -a ./dist/channels/ ./test/channels/rc/apt
         fi
         cd ./test
         git add .
