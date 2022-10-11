@@ -16,7 +16,7 @@ on:
         default: 'false'
         
 jobs:
-  oclif-release:
+  #oclif-release:
     # - name: Clone test repo
     #   run: |
     #     rm -r test
