@@ -52,10 +52,10 @@ jobs:
           rsync -a ./dist/deb/ ./test/apt
         fi
         if [ -d "dist/channels/draft"]; then
-          rsync -a ./dist/channels/ ./test/channels/draft/apt
+          rsync -a ./dist/channels/draft/ ./test/channels/draft/apt
         fi
         if [ -d "dist/channels/rc"]; then
-          rsync -a ./dist/channels/ ./test/channels/rc/apt
+          rsync -a ./dist/channels/rc/ ./test/channels/rc/apt
         fi
         cd ./test
         git add .

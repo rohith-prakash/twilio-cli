@@ -87,10 +87,10 @@ PATH=$PATH:$PWD/bin eval $(PATH=$PATH:$PWD/bin node -p "require('./package').scr
       // fetch existing Packages file which needs to be modified for new version
       // await qq.x(`aws s3 cp s3://${pjson.oclif.update.s3.bucket}/apt/Packages Packages`, {cwd: dist, reject: false});
       // const content = fs.readFileSync(`${dist}/Packages`);
-      if(pjson.version.includes("draft"))
-        await qq.x(`wget https://rohith-prakash.github.io/test/channels/draft/apt/Packages -O Packages`, {cwd: dist, reject: false})
-      else 
-        await qq.x(`wget https://rohith-prakash.github.io/test/apt/Packages -O Packages`, {cwd: dist, reject: false})
+      // if(pjson.version.includes("draft"))
+      //   await qq.x(`wget https://rohith-prakash.github.io/test/channels/draft/apt/Packages -O Packages`, {cwd: dist, reject: false})
+      // else 
+      await qq.x(`wget https://rohith-prakash.github.io/test/apt/Packages -O Packages`, {cwd: dist, reject: false})
       const content = fs.readFileSync(`${dist}/Packages`);
     }
     catch(error) {
