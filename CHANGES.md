@@ -1,3 +1,15 @@
+### [1.0.10](https://github.com/rohith-prakash/twilio-cli/compare/1.0.9...1.0.10) (2022-10-11)
+
+
+### Library - Fixes
+
+* added packages to draft/apt ([b76e8bd](https://github.com/rohith-prakash/twilio-cli/commit/b76e8bd4113dad4a582d293c452fc9668d6bdd46))
+* changed apt ([1483b53](https://github.com/rohith-prakash/twilio-cli/commit/1483b534e9cc4e6a62471845ce04e43f3091330d))
+* changed apt send location for draft ([e1b3b73](https://github.com/rohith-prakash/twilio-cli/commit/e1b3b73bb7609e52ca940c911137dee9578da4a6))
+* changed from elif to if ([3b4dd25](https://github.com/rohith-prakash/twilio-cli/commit/3b4dd251e2183b97fbc898c9dea06ab6fda32505))
+* changes to apt release ([07de4fa](https://github.com/rohith-prakash/twilio-cli/commit/07de4fa483b89fadaf8e5ddb6154f93e48ca1648))
+* corrected version for draft ([bf5eb90](https://github.com/rohith-prakash/twilio-cli/commit/bf5eb90b82b4f0a0aa2707cc5e6e6ce5927558cf))
+
 ### [1.0.9](https://github.com/rohith-prakash/twilio-cli/compare/1.0.8...1.0.9) (2022-10-10)
 
 
