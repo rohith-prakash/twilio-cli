@@ -1,3 +1,10 @@
+### [1.0.11](https://github.com/rohith-prakash/twilio-cli/compare/1.0.10...1.0.11) (2022-10-11)
+
+
+### Library - Fixes
+
+* modified debian draft release ([8d52ebb](https://github.com/rohith-prakash/twilio-cli/commit/8d52ebb4b22e3da7f4ed34157e61bc951db4a323))
+
 ### [1.0.10](https://github.com/rohith-prakash/twilio-cli/compare/1.0.9...1.0.10) (2022-10-11)
 
 
